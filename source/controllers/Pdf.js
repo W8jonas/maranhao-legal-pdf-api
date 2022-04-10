@@ -79,7 +79,11 @@ function getConclusion(pdfText) {
 }
 
 function sanitizeString(str) {
-    return str.replace(':', '').replace('\r\n', '').trim()
+    const sanitizedString = str.replace(/[^0-9a-zA-Z]+/, '').replace('\r\n', '').trim()
+
+    const stringWithFirstLetterUpperCase = sanitizedString.charAt(0).toUpperCase() + sanitizedString.slice(1);
+
+    return stringWithFirstLetterUpperCase
 }
 
 async function index(request, response) {
