@@ -20,7 +20,7 @@ function getAuthor(pdfText) {
 
         if (_author) {
             if (_author.length) {
-                return _author[0]
+                return sanitizeString(_author[0])
             }
         }
 
@@ -28,7 +28,7 @@ function getAuthor(pdfText) {
 
         if (_author2) {
             if (_author2.length) {
-                return _author2[0]
+                return sanitizeString(_author2[0])
             }
         }
     } catch (error) {
@@ -47,7 +47,7 @@ function getDefendant(pdfText) {
     
         if (_defendant) {
             if (_defendant.length) {
-                return _defendant[0]
+                return sanitizeString(_defendant[0])
             }
         }
     
@@ -55,7 +55,7 @@ function getDefendant(pdfText) {
     
         if (_defendant2) {
             if (_defendant2.length) {
-                return _defendant2[0]
+                return sanitizeString(_defendant2[0])
             }
         }
     } catch (error) {
@@ -65,7 +65,6 @@ function getDefendant(pdfText) {
 
 
 function getConclusion(pdfText) {
-
     const pdfTextLower = pdfText.toLowerCase()
 
     var someEncodedString = Buffer.from(pdfTextLower, 'utf-8').toString();
@@ -74,11 +73,14 @@ function getConclusion(pdfText) {
 
     if (sentences) {
         if (sentences.length) {
-            return 'julgo ' + sentences[sentences.length - 1].replace('.', ', ').split(', ')[0]
+            return 'julgo ' + sentences[sentences.length - 1].replace('.', ', ').split(', ')[0].replace('\r\n', '')
         }
     }
 }
 
+function sanitizeString(str) {
+    return str.replace(':', '').replace('\r\n', '').trim()
+}
 
 async function index(request, response) {
     console.log("request.params: ", request.params)
