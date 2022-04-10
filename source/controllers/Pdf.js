@@ -107,9 +107,6 @@ async function index(request, response) {
             const filteredContent = pdfText.replace(/[\r\n]/g, ""); // filteredContent
             const formattedContent = filteredContent.replace(/(-{5,})(.+?)(-{5,})/g, " ");
             
-            const dispositivo = 123 // formattedContent.match( /julgo(.*)procedente/ui )[0] || null;
-            console.log('dispositivo', dispositivo)
-
             const author = getAuthor(pdfText)
             console.log('\nauthor', author)
 
