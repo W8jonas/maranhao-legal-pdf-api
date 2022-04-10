@@ -10,6 +10,6 @@ const routes = Router()
 
 // routes.get('/tags', TagsControllers.index)
 
-routes.get('/categorias', PdfController.index)
+routes.get('/categorias/:id', PdfController.index)
 
 module.exports = { routes }
