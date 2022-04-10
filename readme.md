@@ -88,7 +88,7 @@ clique aqui.
 </a>
 
 Conheça o código da nossa solução backend que gera o Visual Law,
-<a href="https://maranhao-legal.herokuapp.com/">
+<a href="https://github.com/W8jonas/maranhao-legal-backend/">
 clique aqui.
 </a>
 
