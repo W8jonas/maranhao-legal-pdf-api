@@ -1,13 +1,5 @@
 const path = require('path')
 
-const pdf = path.join(__dirname, "./tribunal_de_justica_do_estado_do_maranhao.pdf")
-const pdf2 = path.join(__dirname, "./juiz_flagrado_dirigindo_carro_eike.pdf")
-const pdf3 = path.join(__dirname, "./sentenca-juiz-advogado.pdf")
-
-// const pdf = "./tribunal_de_justica_do_estado_do_maranhao.pdf"
-// const pdf2 = "./juiz_flagrado_dirigindo_carro_eike.pdf"
-// const pdf3 = "./sentenca-juiz-advogado.pdf"
-
 PDFParser = require("pdf2json");
 
 function getPdfById(id) {
