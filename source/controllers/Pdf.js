@@ -64,6 +64,21 @@ function getDefendant(pdfText) {
 }
 
 
+function getConclusion(pdfText) {
+
+    const pdfTextLower = pdfText.toLowerCase()
+
+    var someEncodedString = Buffer.from(pdfTextLower, 'utf-8').toString();
+
+    const sentences = someEncodedString.split('julgo')
+
+    if (sentences) {
+        if (sentences.length) {
+            return 'julgo ' + sentences[sentences.length - 1].replace('.', ', ').split(', ')[0]
+        }
+    }
+}
+
 
 async function index(request, response) {
     console.log("request.params: ", request.params)
@@ -99,10 +114,13 @@ async function index(request, response) {
             const defendant = getDefendant(pdfText)
             console.log('\ndefendant', defendant)
 
+            const conclusion = getConclusion(pdfText)
+            console.log('\nconclusion: ', conclusion)
+
             return response.send({
                 status: '200',
                 data: {
-                    autor, defendant
+                    autor, defendant, conclusion
                 }
             })
     
