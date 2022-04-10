@@ -8,6 +8,35 @@ function getPdfById(id) {
     return val
 }
 
+
+function getAuthor(pdfText) {
+
+    try {
+        const pdfTextLower = pdfText.toLowerCase()
+
+        var someEncodedString = Buffer.from(pdfTextLower, 'utf-8').toString();
+
+        const _author = someEncodedString.match(/(?<=autor[eas]{0,3})(.*)(?= )/)
+
+        if (_author) {
+            if (_author.length) {
+                return _author[0]
+            }
+        }
+
+        const _author2 = someEncodedString.match(/(?<=exequente[s]{0,1})(.*)(?= )/)
+
+        if (_author2) {
+            if (_author2.length) {
+                return _author2[0]
+            }
+        }
+    } catch (error) {
+        return ''
+    }
+}
+
+
 async function index(request, response) {
     console.log("request.params: ", request.params)
     
@@ -27,17 +56,22 @@ async function index(request, response) {
             const pdfText = pdfParser.getRawTextContent()
             // const autor = pdfText.match( /Autor(\([eas]{0,3}\))?:(.*)(\n|\r)/ui )[2] || null; // podemos ter 2 ou mais Réus.. // Autor(\([eas]{0,3}\))?:(.*)(\s*) // Réu?(\(u?s\))?:{1}
             // console.log('autor', autor)
-    
+            
+            // console.log('pdfText', pdfText)
+            
             const filteredContent = pdfText.replace(/[\r\n]/g, ""); // filteredContent
             const formattedContent = filteredContent.replace(/(-{5,})(.+?)(-{5,})/g, " ");
-    
-            const dispositivo = formattedContent.match( /julgo(.*)procedente/ui )[0] || null;
+            
+            const dispositivo = 123 // formattedContent.match( /julgo(.*)procedente/ui )[0] || null;
             console.log('dispositivo', dispositivo)
-    
+
+            const autor = getAuthor(pdfText)
+            console.log('\nautor', autor)
+
             return response.send({
                 status: '200',
                 data: {
-                    dispositivo
+                    autor
                 }
             })
     
