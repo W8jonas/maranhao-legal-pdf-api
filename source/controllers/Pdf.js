@@ -108,8 +108,8 @@ async function index(request, response) {
             const dispositivo = 123 // formattedContent.match( /julgo(.*)procedente/ui )[0] || null;
             console.log('dispositivo', dispositivo)
 
-            const autor = getAuthor(pdfText)
-            console.log('\nautor', autor)
+            const author = getAuthor(pdfText)
+            console.log('\nauthor', author)
 
             const defendant = getDefendant(pdfText)
             console.log('\ndefendant', defendant)
@@ -120,7 +120,7 @@ async function index(request, response) {
             return response.send({
                 status: '200',
                 data: {
-                    autor, defendant, conclusion
+                    author, defendant, conclusion
                 }
             })
     
