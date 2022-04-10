@@ -36,6 +36,34 @@ function getAuthor(pdfText) {
     }
 }
 
+function getDefendant(pdfText) {
+
+    try {
+        const pdfTextLower = pdfText.toLowerCase()
+    
+        var someEncodedString = Buffer.from(pdfTextLower, 'utf-8').toString();
+    
+        const _defendant = someEncodedString.match(/(?<=réu[s]{0,1})(.*)(?= )/)
+    
+        if (_defendant) {
+            if (_defendant.length) {
+                return _defendant[0]
+            }
+        }
+    
+        const _defendant2 = someEncodedString.match(/(?<=executado[s]{0,1})(.*)(?= )/)
+    
+        if (_defendant2) {
+            if (_defendant2.length) {
+                return _defendant2[0]
+            }
+        }
+    } catch (error) {
+        return ''
+    }
+}
+
+
 
 async function index(request, response) {
     console.log("request.params: ", request.params)
@@ -68,10 +96,13 @@ async function index(request, response) {
             const autor = getAuthor(pdfText)
             console.log('\nautor', autor)
 
+            const defendant = getDefendant(pdfText)
+            console.log('\ndefendant', defendant)
+
             return response.send({
                 status: '200',
                 data: {
-                    autor
+                    autor, defendant
                 }
             })
     
