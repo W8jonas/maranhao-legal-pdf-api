@@ -48,6 +48,7 @@ O Maranhão também ficou entre os últimos estados brasileiros no ranking de ac
 
 O que causa diversos problemas para a população maranhense no que diz respeito ao acesso a justiça e ao entendimento da mesma.
 
+![mockup](https://i.imgur.com/1ccEbT1.png)
 
 ## Nosso produto
 
@@ -61,7 +62,7 @@ Somos uma plataforma digital que promove facilidade do entendimento das sentenç
 
 4. Dentro dos processos o indivíduo vai poder ver a sentença resumida visualmente, além de poder ouvir, baixar, imprimir e enviar essa sentença.
 
-
+<img src="https://i.imgur.com/lgFQV82.png" alt="Antes e depois" />
 
 ## Tecnologias
 
